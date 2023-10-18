@@ -74,6 +74,7 @@ void find_fct(char *opcode, char *val, int line_nb, int f)
 		{"swap", swap},
 		{"add", add},
 		{"nop", nop},
+		{"sub", sub},
 		{NULL, NULL}
 	};
 
