@@ -10,7 +10,7 @@ void swap(stack_t **stack, unsigned int line_nb)
 	stack_t *tm;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		error_type2(8, line_nb);
+		error_type2(8, line_nb, "swap");
 	tm = (*stack)->next;
 	(*stack)->next = tm->next;
 	if (tm->next != NULL)
@@ -31,7 +31,7 @@ void add(stack_t **stack, unsigned int line_nb)
 	int s;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		error_type2(8, line_nb);
+		error_type2(8, line_nb, "add");
 	(*stack) = (*stack)->next;
 	s = (*stack)->n + (*stack)->prev->n;
 	(*stack)->n = s;

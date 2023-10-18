@@ -1,6 +1,4 @@
 #include "monty.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
  * open - open the file
@@ -59,12 +57,12 @@ int separat(char *buffer, int line_nb, int f)
 
 /**
  * find_fct - search for the function to use
- * @op_c: the opcode
+ * @opcode: the opcode
  * @val: the arg of the opcode
  * @f: how the nodes will be stored
  * @line_nb: the nb of the line
  */
-void find_fct(char *op_c, char *val, int line_nb, int f)
+void find_fct(char *opcode, char *val, int line_nb, int f)
 {
 	int i, fg;
 
@@ -79,18 +77,18 @@ void find_fct(char *op_c, char *val, int line_nb, int f)
 		{NULL, NULL}
 	};
 
-	if (op_c[0] == '#')
+	if (opcode[0] == '#')
 		return;
 	for (fg = 1, i = 0; fct_l[i].opcode != NULL; i++)
 	{
-		if (strcmp(op_c, fct_l[i].opcode) == 0)
+		if (strcmp(opcode, fct_l[i].opcode) == 0)
 		{
-			call_fct(fct_l[i].f, op_c, val, line_nb, f);
+			call_fct(fct_l[i].f, opcode, val, line_nb, f);
 			fg = 0;
 		}
 	}
 	if (fg == 1)
-		error_type(3, line_nb, op_c);
+		error_type(3, line_nb, opcode);
 }
 
 /**

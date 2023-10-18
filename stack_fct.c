@@ -2,16 +2,16 @@
 
 /**
  * error_type - print the right error message
- * @error_code: the error to print
+ * @err_c: the error to print
  */
-void error_type(int error_code, ...)
+void error_type(int err_c, ...)
 {
 	va_list a;
 	char *op_c;
 	int line_nb;
 
-	va_start(a, error_code);
-	switch (error_code)
+	va_start(a, err_c);
+	switch (err_c)
 	{
 		case 1:
 			fprintf(stderr, "USAGE: monty file\n");
@@ -33,6 +33,8 @@ void error_type(int error_code, ...)
 			fprintf(stderr, "L%d: usage: push integer\n",
 					va_arg(a, int));
 			break;
+		default:
+			break;
 	}
 	free_node();
 	exit(EXIT_FAILURE);
@@ -40,16 +42,16 @@ void error_type(int error_code, ...)
 
 /**
  * error_type2 - print the right error message
- * @error_code: the error to print
+ * @err_c: the error to print
  */
-void error_type2(int error_code, ...)
+void error_type2(int err_c, ...)
 {
 	va_list a;
 	char *op_c;
 	int line_nb;
 
-	va_start(a, error_code);
-	switch (error_code)
+	va_start(a, err_c);
+	switch (err_c)
 	{
 		case 6:
 			fprintf(stderr, "L%d: can't pint, stack empty\n",
