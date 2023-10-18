@@ -57,7 +57,7 @@ void nop(stack_t **stack, unsigned int line_nb)
  */
 void sub(stack_t **stack, unsigned int line_nb)
 {
-	int sub;
+	int s;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		error_type2(8, line_nb, "sub");
