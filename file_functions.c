@@ -10,8 +10,11 @@ void open(char *f_name)
 	FILE *fd = fopen(f_name, "r");
 
 	if (f_name == NULL || fd == NULL)
-		err_type(2, f_name);
-
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", f_name);
+		free_node();
+		exit(EXIT_FAILURE);
+	}
 	_read(fd);
 	fclose(fd);
 }
@@ -48,7 +51,11 @@ int separat(char *buffer, int line_n, int fmt)
 	const char *del = "\n ";
 
 	if (buffer == NULL)
-		err_type(4);
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		free_node();
+		exit(EXIT_FAILURE);
+	}
 	op_c = strtok(buffer, del);
 	if (op_c == NULL)
 		return (fmt);
@@ -99,7 +106,11 @@ void find_fct(char *op_c, char *val, int line_n, int fmt)
 		}
 	}
 	if (f == 1)
-		err_type(3, line_n, op_c);
+	{
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_n, op_c);
+		free_node();
+		exit(EXIT_FAILURE);
+	}
 }
 
 /**
@@ -125,11 +136,19 @@ void call_fct(op_func fct, char *op_c, char *val, int line_n, int fmt)
 			f = -1;
 		}
 		if (val == NULL)
-			err_type(5, line_n);
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", line_n);
+			free_node();
+			exit(EXIT_FAILURE);
+		}
 		for (i = 0; val[i] != '\0'; i++)
 		{
 			if (isdigit(val[i]) == 0)
-				err_type(5, line_n);
+			{
+				fprintf(stderr, "L%d: usage: push integer\n", line_n);
+				free_node();
+				exit(EXIT_FAILURE);
+			}
 		}
 		node = make_node(atoi(val) * f);
 		if (fmt == 0)

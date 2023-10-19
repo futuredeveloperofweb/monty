@@ -21,7 +21,11 @@ void swap(stack_t **stack, unsigned int line_n)
 	stack_t *tm;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		err_type2(8, line_n, "swap");
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_n);
+		free_node();
+		exit(EXIT_FAILURE);
+	}
 	tm = (*stack)->next;
 	(*stack)->next = tm->next;
 	if (tm->next != NULL)
@@ -42,8 +46,11 @@ void add(stack_t **stack, unsigned int line_n)
 	int s;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		err_type2(8, line_n, "add");
-
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_n);
+		free_node();
+		exit(EXIT_FAILURE);
+	}
 	(*stack) = (*stack)->next;
 	s = (*stack)->n + (*stack)->prev->n;
 	(*stack)->n = s;
@@ -61,8 +68,11 @@ void sub(stack_t **stack, unsigned int line_n)
 	int s;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		err_type2(8, line_n, "sub");
-
+	{
+		fprintf(stderr, "L%d: can't sub, stack too short\n", line_n);
+		free_node();
+		exit(EXIT_FAILURE);
+	}
 	(*stack) = (*stack)->next;
 	s = (*stack)->n - (*stack)->prev->n;
 	(*stack)->n = s;
