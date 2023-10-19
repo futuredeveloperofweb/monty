@@ -3,25 +3,25 @@
 /**
  * nop - does nothing
  * @stack: pointer to stack.
- * @line_number: line number of of the opcode.
+ * @line_n: line number of of the opcode.
  */
-void nop(stack_t **stack, unsigned int line_number)
+void nop(stack_t **stack, unsigned int line_n)
 {
 	(void)stack;
-	(void)line_number;
+	(void)line_n;
 }
 
 /**
  * swap - swap the top two elements of the stack.
  * @stack: pointer to stack.
- * @line_number: line number of of the opcode.
+ * @line_n: line number of of the opcode.
  */
-void swap(stack_t **stack, unsigned int line_number)
+void swap(stack_t **stack, unsigned int line_n)
 {
 	stack_t *tm;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		err_type2(8, line_number, "swap");
+		err_type2(8, line_n, "swap");
 	tm = (*stack)->next;
 	(*stack)->next = tm->next;
 	if (tm->next != NULL)
@@ -35,14 +35,14 @@ void swap(stack_t **stack, unsigned int line_number)
 /**
  * add - add the top two elements of the stack.
  * @stack: pointer to stack.
- * @line_number: line number of of the opcode.
+ * @line_n: line number of of the opcode.
  */
-void add(stack_t **stack, unsigned int line_number)
+void add(stack_t **stack, unsigned int line_n)
 {
 	int s;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		err_type2(8, line_number, "add");
+		err_type2(8, line_n, "add");
 
 	(*stack) = (*stack)->next;
 	s = (*stack)->n + (*stack)->prev->n;
@@ -54,14 +54,14 @@ void add(stack_t **stack, unsigned int line_number)
 /**
  * sub - substruct the top two elements of the stack.
  * @stack: pointer to stack.
- * @line_number: line number of of the opcode.
+ * @line_n: line number of of the opcode.
  */
-void sub(stack_t **stack, unsigned int line_number)
+void sub(stack_t **stack, unsigned int line_n)
 {
 	int s;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		err_type2(8, line_number, "sub");
+		err_type2(8, line_n, "sub");
 
 	(*stack) = (*stack)->next;
 	s = (*stack)->n - (*stack)->prev->n;

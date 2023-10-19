@@ -6,10 +6,11 @@
  * @new: a pointer to the new node.
  * @line_n: number of the line
  */
-void push(stack_t **new, __attribute__((unused))unsigned int line_n)
+void push(stack_t **new, unsigned int line_n)
 {
 	stack_t *tm;
 
+	(void)line_n;
 	if (new == NULL || *new == NULL)
 		exit(EXIT_FAILURE);
 	if (head == NULL)
@@ -26,13 +27,13 @@ void push(stack_t **new, __attribute__((unused))unsigned int line_n)
 /**
  * pall - print the value of the nodes in the stack
  * @stack: a pointer to stack.
- * @line_number: line number
+ * @line_n: line number
  */
-void pall(stack_t **stack, unsigned int line_number)
+void pall(stack_t **stack, unsigned int line_n)
 {
 	stack_t *tm;
 
-	(void) line_number;
+	(void) line_n;
 	if (stack == NULL)
 		exit(EXIT_FAILURE);
 	tm = *stack;
@@ -46,14 +47,14 @@ void pall(stack_t **stack, unsigned int line_number)
 /**
  * pop - remove the head node of the stack
  * @stack: pointer to stack.
- * @line_number: line number of of the opcode.
+ * @line_n: line number of of the opcode.
  */
-void pop(stack_t **stack, unsigned int line_number)
+void pop(stack_t **stack, unsigned int line_n)
 {
 	stack_t *tm;
 
 	if (stack == NULL || *stack == NULL)
-		err_type2(7, line_number);
+		err_type2(7, line_n);
 
 	tm = *stack;
 	*stack = tm->next;
@@ -64,11 +65,11 @@ void pop(stack_t **stack, unsigned int line_number)
 /**
  * pint - print the head node of stack
  * @stack: pointer to stack.
- * @line_number: line number of of the opcode.
+ * @line_n: line number of of the opcode.
  */
-void pint(stack_t **stack, unsigned int line_number)
+void pint(stack_t **stack, unsigned int line_n)
 {
 	if (stack == NULL || *stack == NULL)
-		err_type2(6, line_number);
+		err_type2(6, line_n);
 	printf("%d\n", (*stack)->n);
 }

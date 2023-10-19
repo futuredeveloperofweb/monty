@@ -44,33 +44,33 @@ void _read(FILE *fd)
 
 int separat(char *buffer, int line_n, int fmt)
 {
-	char *opcode, *val;
+	char *op_c, *val;
 	const char *del = "\n ";
 
 	if (buffer == NULL)
 		err_type(4);
-	opcode = strtok(buffer, del);
-	if (opcode == NULL)
+	op_c = strtok(buffer, del);
+	if (op_c == NULL)
 		return (fmt);
 	val = strtok(NULL, del);
 
-	if (strcmp(opcode, "stack") == 0)
+	if (strcmp(op_c, "stack") == 0)
 		return (0);
-	if (strcmp(opcode, "queue") == 0)
+	if (strcmp(op_c, "queue") == 0)
 		return (1);
 
-	find_fct(opcode, val, line_n, fmt);
+	find_fct(op_c, val, line_n, fmt);
 	return (fmt);
 }
 
 /**
  * find_fct - find the right function to work with
- * @opcode: the opcode
+ * @op_c: the opcode
  * @val: the argument of opcode
  * @fmt: storage format
  * @line_n: line number
  */
-void find_fct(char *opcode, char *val, int line_n, int fmt)
+void find_fct(char *op_c, char *val, int line_n, int fmt)
 {
 	int i;
 	int f;
@@ -87,30 +87,30 @@ void find_fct(char *opcode, char *val, int line_n, int fmt)
 		{NULL, NULL}
 	};
 
-	if (opcode[0] == '#')
+	if (op_c[0] == '#')
 		return;
 
 	for (f = 1, i = 0; f_list[i].opcode != NULL; i++)
 	{
-		if (strcmp(opcode, f_list[i].opcode) == 0)
+		if (strcmp(op_c, f_list[i].opcode) == 0)
 		{
-			call_fct(f_list[i].f, opcode, val, line_n, fmt);
+			call_fct(f_list[i].f, op_c, val, line_n, fmt);
 			f = 0;
 		}
 	}
 	if (f == 1)
-		err_type(3, line_n, opcode);
+		err_type(3, line_n, op_c);
 }
 
 /**
  * call_fct - call the function to use
- * @func: a pointer to the function to use
+ * @fct: a pointer to the function to use
  * @op_c: the opcode.
  * @val: numeric value.
  * @line_n: line numeber
  * @fmt: Format specifier
  */
-void call_fct(op_func func, char *op_c, char *val, int line_n, int fmt)
+void call_fct(op_func fct, char *op_c, char *val, int line_n, int fmt)
 {
 	stack_t *node;
 	int f;
@@ -133,10 +133,10 @@ void call_fct(op_func func, char *op_c, char *val, int line_n, int fmt)
 		}
 		node = make_node(atoi(val) * f);
 		if (fmt == 0)
-			func(&node, line_n);
+			fct(&node, line_n);
 		if (fmt == 1)
 			add_queue(&node, line_n);
 	}
 	else
-		func(&head, line_n);
+		fct(&head, line_n);
 }
