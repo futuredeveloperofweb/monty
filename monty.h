@@ -57,6 +57,7 @@ void swap(stack_t **, unsigned int);
 void add(stack_t **, unsigned int);
 void sub(stack_t **, unsigned int);
 void nop(stack_t **, unsigned int);
+void _div(stack_t **, unsigned int);
 
 stack_t *make_node(int);
 void free_node(void);

@@ -85,7 +85,7 @@ void sub(stack_t **stack, unsigned int line_n)
  * @stack: pointer to stack.
  * @line_n: line number of of the opcode.
  */
-void div(stack_t **stack, unsigned int line_n)
+void _div(stack_t **stack, unsigned int line_n)
 {
 	int d;
 
@@ -97,7 +97,7 @@ void div(stack_t **stack, unsigned int line_n)
 	}
 	if ((*stack)->n == 0)
 	{
-		fprintf(stderr, "L%d: division by zero\n");
+		fprintf(stderr, "L%d: division by zero\n", line_n);
 		exit(EXIT_FAILURE);
 		free_node();
 	}
