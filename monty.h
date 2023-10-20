@@ -58,9 +58,6 @@ void add(stack_t **, unsigned int);
 void sub(stack_t **, unsigned int);
 void nop(stack_t **, unsigned int);
 
-void err_type(int, ...);
-void err_type2(int, ...);
-
 stack_t *make_node(int);
 void free_node(void);
 void add_queue(stack_t **, unsigned int);
