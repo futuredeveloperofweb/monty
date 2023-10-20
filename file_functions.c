@@ -100,7 +100,7 @@ void find_fct(char *op_c, char *val, int line_n, int fmt)
 	};
 
 	if (op_c[0] == '#')
-		exit(EXIT_FAILURE);
+		exit(EXIT_SUCCESS);
 
 	for (f = 1, i = 0; f_list[i].opcode != NULL; i++)
 	{
