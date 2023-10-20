@@ -110,10 +110,11 @@ void rotl(stack_t **stack, unsigned int line_n)
 {
 	stack_t *tm = *stack;
 
+	(void) line_n;
+
 	(*stack) = (*stack)->next;
 	free((*stack)->prev);
 	(*stack)->prev = NULL;
-	head = stack;
 
 	while ((*stack)->next)
 		(*stack) = (*stack)->next;
