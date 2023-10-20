@@ -100,24 +100,3 @@ void pstr(stack_t **stack, unsigned int line_n)
 	}
 	putchar('\n');
 }
-
-/**
- * rotl - rotates the stack to the top
- * @stack: pointer to stack.
- * @line_n: line number of of the opcode
- */
-void rotl(stack_t **stack, unsigned int line_n)
-{
-	stack_t *tm = *stack;
-
-	(void) line_n;
-
-	(*stack) = (*stack)->next;
-	free((*stack)->prev);
-	(*stack)->prev = NULL;
-
-	while ((*stack)->next)
-		(*stack) = (*stack)->next;
-	(*stack)->next = tm;
-	tm->prev = (*stack);
-}
