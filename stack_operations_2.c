@@ -81,7 +81,7 @@ void sub(stack_t **stack, unsigned int line_n)
 }
 
 /**
- * div - devide the toop two elements of the stack
+ * _div - devide the toop two elements of the stack
  * @stack: pointer to stack.
  * @line_n: line number of of the opcode.
  */
