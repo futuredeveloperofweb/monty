@@ -100,10 +100,7 @@ void find_fct(char *op_c, char *val, int line_n, int fmt)
 	};
 
 	if (op_c[0] == '#')
-	{
-		fprintf(stderr, "L%u: unknown instruction %s\n", line_n, op_c);
 		exit(EXIT_FAILURE);
-	}
 
 	for (f = 1, i = 0; f_list[i].opcode != NULL; i++)
 	{

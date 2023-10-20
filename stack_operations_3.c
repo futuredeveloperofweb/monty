@@ -80,16 +80,23 @@ void pchar(stack_t **stack, unsigned int line_n)
  */
 void pstr(stack_t **stack, unsigned int line_n)
 {
+	stack_t *tm = *stack;
+
 	(void) line_n;
 
 	if (stack == NULL || *stack == NULL)
 	{
-		printf("\n");
+		putchar('\n');
 		return;
 	}
-	while ((*stack) && (*stack)->n != 0 && isascii((*stack)->n))
+	while (tm)
 	{
-		printf("%c", (*stack)->n);
-		(*stack) = (*stack)->next;
+		if (tm->n == 0)
+			break;
+		if (!(isascii(tm->n)))
+			break;
+		printf("%c", tm->n);
+		tm = tm->next;
 	}
+	putchar('\n');
 }
